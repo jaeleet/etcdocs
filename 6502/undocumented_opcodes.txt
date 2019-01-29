@@ -1,5 +1,5 @@
 6502 Undocumented Opcodes
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+==========================
 
 
 Based on the Atari 8-bit 6502
@@ -11,9 +11,9 @@ By Freddy Offenga (offen300@hio.tem.nhl.nl)
 
 This version is a direct follow up of the illegal opcode list by Joakim
 Atterhal (WosFilm) and me which was published in the Atari 8-bit disk
-magazine "Mega Maga-zine" issue #6. Most opcode names in this list
+magazine "Mega Magazine" issue #6. Most opcode names in this list
 originated from a disassembler for the Atari (The Symbolic
-Disas-sem-bler by HiasSoft).
+Disassembler by HiasSoft).
 
 
 Credits:
@@ -27,12 +27,12 @@ References:
 
 1.	Illegal opcodes, WosFilm and Frankenstein,
 	Mega Magazine #2, December 1991
-2.	Illegal opcodes v2, WosFilm and Fran-ken-stein,
-	Mega Maga-zine #6, October 1993
+2.	Illegal opcodes v2, WosFilm and Frankenstein,
+	Mega Magazine #6, October 1993
 3.	Illegal Opcodes der 65xx-CPU, Frank Leiprecht,
-	ABBUC Sondermagazin 10, Top-Maga-zin Oktober 1991
-4.	Erg=E4nzung zu den Illegalen OP-Codes, Peter W=F6tzel,
-	Top-M-ag-azin Januar 1992.
+	ABBUC Sondermagazin 10, Top-Magazin Oktober 1991
+4.	Ergänzung zu den Illegalen OPCodes, Peter Wötzel,
+	Top-Magazin Januar 1992.
 5.	6502 Opcodes and Quasi-Opcodes, Craig Taylor, 1992
 6.	Extra Instructions Of The 65XX Series CPU, Adam Vardy,
 	27 Sept. 1996
@@ -41,7 +41,7 @@ References:
 Changes since Version 2.0:
 
 Version 2.0 was compared with two Commodore 8-bit based lists found on
-the inter-net. There were some diffe-rences in opcode names, so I
+the internet. There were some differences in opcode names, so I
 included the other names too. Names between curly brackets are the names
 taken from the list compiled by Craig Taylor. Names between square
 brackets are the names taken from the list by Adam Vardy.
@@ -52,21 +52,21 @@ e
 lists.
 
 The timing values (clock cycles) from all the opcodes were compared with
-the values on the list by Adam Vardy. There were no differen-ces.
+the values on the list by Adam Vardy. There were no differences.
 
 The addressing modes for the "DOP" (double nop) and "TOP" instructions
 were copied from Craig Taylor's list. The reason for this is that the
 different addressing modes explain the differences in the timing values.
 
 Opcode $8B was removed from the "AAX" table. The behaviour of this
-opcode seems to be comlex (as noted by several peop-le). Maybe there
+opcode seems to be comlex (as noted by several people). Maybe there
 will be more information in the next version of this document. For now
 this opcode is called "XAA".
 
 The addressing mode for opcode $A3 (LAX) was false on the previous list.
-Changed to (indi-rect,x).
+Changed to (indirect,x).
 
-The addressing modes for opcodes $13 and $03 (SLO) were swit-ched.
+The addressing modes for opcodes $13 and $03 (SLO) were switched.
 Corrected in this version.
 
 Addressing mode for opcode $B7 (LAX) was "zero-page,x", but should be
@@ -87,8 +87,8 @@ n	: number of clock cycles
 *    : add one cycle when page boundary is crossed
 
 
-AAC (ANC) [ANC]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+AAC (ANC) [ANC] !ANC
+====================
 AND byte with accumulator. If result is negative then carry is set.
 Status flags: N,Z,C
 
@@ -98,8 +98,8 @@ Immediate   |AAC #arg   |$0B| 2 | 2
 Immediate   |AAC #arg   |$2B| 2 | 2
 
 
-AAX (SAX) [AXS]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+AAX (SAX) [AXS] !SAX
+====================
 AND X register with accumulator and store result in memory. Status
 flags: N,Z
 
@@ -111,9 +111,9 @@ Zero Page,Y |AAX arg,Y  |$97| 2 | 4
 Absolute    |AAX arg    |$8F| 3 | 4
 
 
-ARR (ARR) [ARR]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-AND byte with accumulator, then rotate one bit right in accu-mulator and
+ARR (ARR) [ARR] !ARR
+====================
+AND byte with accumulator, then rotate one bit right in accumulator and
 check bit 5 and 6:
 If both bits are 1: set C, clear V.
 If both bits are 0: clear C and V.
@@ -126,9 +126,9 @@ Addressing  |Mnemonics  |Opc|Sz | n
 Immediate   |ARR #arg   |$6B| 2 | 2
 
 
-ASR (ASR) [ALR]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-AND byte with accumulator, then shift right one bit in accumu-lator.
+ASR (ASR) [ALR] !ALR
+====================
+AND byte with accumulator, then shift right one bit in accumulator.
 Status flags: N,Z,C
 
 Addressing  |Mnemonics  |Opc|Sz | n
@@ -136,18 +136,8 @@ Addressing  |Mnemonics  |Opc|Sz | n
 Immediate   |ASR #arg   |$4B| 2 | 2
 
 
-ATX (LXA) [OAL]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-AND byte with accumulator, then transfer accumulator to X register.
-Status flags: N,Z
-
-Addressing  |Mnemonics  |Opc|Sz | n
-------------|-----------|---|---|---
-Immediate   |ATX #arg   |$AB| 2 | 2
-
-
-AXA (SHA) [AXA]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+AXA (SHA) [AXA] !AHX
+====================
 AND X register with accumulator then AND result with 7 and store in
 memory. Status flags: -
 
@@ -157,9 +147,9 @@ Absolute,Y  |AXA arg,Y  |$9F| 3 | 5
 (Indirect),Y|AXA arg    |$93| 2 | 6
 
 
-AXS (SBX) [SAX]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-AND X register with accumulator and store result in X regis-ter, then
+AXS (SBX) [SAX] !SAX
+====================
+AND X register with accumulator and store result in X register, then
 subtract byte from X register (without borrow).
 Status flags: N,Z,C
 
@@ -168,8 +158,8 @@ Addressing  |Mnemonics  |Opc|Sz | n
 Immediate   |AXS #arg   |$CB| 2 | 2
 
 
-DCP (DCP) [DCM]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+DCP (DCP) [DCM] !DCP
+====================
 Subtract 1 from memory (without borrow).
 Status flags: C
 
@@ -185,9 +175,9 @@ Absolute,Y  |DCP arg,Y  |$DB| 3 | 7
 
 
 
-DOP (NOP) [SKB]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-No operation (double NOP). The argument has no signifi-cance. Status
+DOP (NOP) [SKB] !NOP
+====================
+No operation (double NOP). The argument has no significance. Status
 flags: -
 
 Addressing  |Mnemonics  |Opc|Sz | n
@@ -208,9 +198,9 @@ Immediate   |DOP #arg   |$E2| 2 | 2
 Zero Page,X |DOP arg,X  |$F4| 2 | 4
 
 
-ISC (ISB) [INS]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Increase memory by one, then subtract memory from accu-mulator (with
+ISC (ISB) [INS] !ISC
+====================
+Increase memory by one, then subtract memory from accumulator (with
 borrow). Status flags: N,V,Z,C
 
 Addressing  |Mnemonics  |Opc|Sz | n
@@ -224,8 +214,8 @@ Absolute,Y  |ISC arg,Y  |$FB| 3 | 7
 (Indirect),Y|ISC (arg),Y|$F3| 2 | 8
 
 
-KIL (JAM) [HLT]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+KIL (JAM) [HLT] !STP
+====================
 Stop program counter (processor lock up).
 Status flags: -
 
@@ -245,9 +235,9 @@ Implied     |KIL        |$D2| 1 | -
 Implied     |KIL        |$F2| 1 | -
 
 
-LAR (LAE) [LAS]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-AND memory with stack pointer, transfer result to accu-mulator, X
+LAR (LAE) [LAS] !LAS
+====================
+AND memory with stack pointer, transfer result to accumulator, X
 register and stack pointer.
 Status flags: N,Z
 
@@ -256,8 +246,8 @@ Addressing  |Mnemonics  |Opc|Sz | n
 Absolute,Y  |LAR arg,Y  |$BB| 3 | 4 *
 
 
-LAX (LAX) [LAX]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+LAX (LAX) [LAX] !LAX
+====================
 Load accumulator and X register with memory.
 Status flags: N,Z
 
@@ -265,14 +255,15 @@ Addressing  |Mnemonics  |Opc|Sz | n
 ------------|-----------|---|---|---
 Zero Page   |LAX arg    |$A7| 2 | 3
 Zero Page,Y |LAX arg,Y  |$B7| 2 | 4
+Immediate   |LAX #arg   |$AB| 2 | 2
 Absolute    |LAX arg    |$AF| 3 | 4
 Absolute,Y  |LAX arg,Y  |$BF| 3 | 4 *
 (Indirect,X)|LAX (arg,X)|$A3| 2 | 6
 (Indirect),Y|LAX (arg),Y|$B3| 2 | 5 *
 
 
-NOP (NOP) [NOP]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+NOP (NOP) [NOP] !NOP
+====================
 No operation
 Status flags: -
 
@@ -286,8 +277,8 @@ Implied     |NOP        |$DA| 1 | 2
 Implied     |NOP        |$FA| 1 | 2
 
 
-RLA (RLA) [RLA]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+RLA (RLA) [RLA] !RLA
+====================
 Rotate one bit left in memory, then AND accumulator with memory. Status
 flags: N,Z,C
 
@@ -302,8 +293,8 @@ Absolute,Y  |RLA arg,Y  |$3B| 3 | 7
 (Indirect),Y|RLA (arg),Y|$33| 2 | 8
 
 
-RRA (RRA) [RRA]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+RRA (RRA) [RRA] !RRA
+====================
 Rotate one bit right in memory, then add memory to accumulator (with
 carry).
 
@@ -320,8 +311,8 @@ Absolute,Y  |RRA arg,Y  |$7B| 3 | 7
 (Indirect),Y|RRA (arg),Y|$73| 2 | 8
 
 
-SBC (SBC) [SBC]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+SBC (SBC) [SBC] !SBC
+====================
 The same as the legal opcode $E9 (SBC #byte)
 
 Status flags: N,V,Z,C
@@ -331,8 +322,8 @@ Addressing  |Mnemonics  |Opc|Sz | n
 Immediate   |SBC #byte  |$EB| 2 | 2
 
 
-SLO (SLO) [ASO]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+SLO (SLO) [ASO] !SLO
+====================
 Shift left one bit in memory, then OR accumulator with memory. =
 
 Status flags: N,Z,C
@@ -348,8 +339,8 @@ Absolute,Y  |SLO arg,Y  |$1B| 3 | 7
 (Indirect),Y|SLO (arg),Y|$13| 2 | 8
 
 
-SRE (SRE) [LSE]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+SRE (SRE) [LSE] !SRE
+====================
 Shift right one bit in memory, then EOR accumulator with memory. Status
 flags: N,Z,C
 
@@ -364,12 +355,12 @@ Absolute,Y  |SRE arg,Y  |$5B| 3 | 7
 (Indirect),Y|SRE (arg),Y|$53| 2 | 8
 
 
-SXA (SHX) [XAS]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+SXA (SHX) [XAS] !SHX
+====================
 AND X register with the high byte of the target address of the argument
 + 1. Store the result in memory.
 
-M =3D X AND HIGH(arg) + 1
+M = X AND HIGH(arg) + 1
 
 Status flags: -
 
@@ -378,12 +369,12 @@ Addressing  |Mnemonics  |Opc|Sz | n
 Absolute,Y  |SXA arg,Y  |$9E| 3 | 5
 
 
-SYA (SHY) [SAY]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+SYA (SHY) [SAY] !SHY
+====================
 AND Y register with the high byte of the target address of the argument
 + 1. Store the result in memory.
 
-M =3D Y AND HIGH(arg) + 1
+M = Y AND HIGH(arg) + 1
 
 Status flags: -
 
@@ -392,9 +383,9 @@ Addressing  |Mnemonics  |Opc|Sz | n
 Absolute,X  |SYA arg,X  |$9C| 3 | 5
 
 
-TOP (NOP) [SKW]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-No operation (tripple NOP). The argument has no signifi-cance. Status
+TOP (NOP) [SKW] !TOP
+====================
+No operation (tripple NOP). The argument has no significance. Status
 flags: -
 
 Addressing  |Mnemonics  |Opc|Sz | n
@@ -408,8 +399,8 @@ Absolute,X  |TOP arg,X  |$DC| 3 | 4 *
 Absolute,X  |TOP arg,X  |$FC| 3 | 4 *
 
 
-XAA (ANE) [XAA]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+XAA (ANE) [XAA] !XAA
+====================
 Exact operation unknown. Read the referenced documents for more
 information and observations.
 
@@ -418,13 +409,13 @@ Addressing  |Mnemonics  |Opc|Sz | n
 Immediate   |XAA #arg   |$8B| 2 | 2
 
 
-XAS (SHS) [TAS]
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+XAS (SHS) [TAS] !TAS
+====================
 AND X register with accumulator and store result in stack pointer, then
 AND stack pointer with the high byte of the target address of the
 argument + 1. Store result in memory.
 
-S =3D X AND A, M =3D S AND HIGH(arg) + 1
+S = X AND A, M = S AND HIGH(arg) + 1
 
 Status flags: -
 
